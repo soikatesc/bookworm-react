@@ -5,7 +5,7 @@ class LoginPage extends Component {
 	submit = (data) => {
 		console.log(data);
 	}
-	
+
 	render() {
 		return (
 			<div>
