@@ -8,6 +8,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 import App from './App';
 import rootReducer from './store/reducers';
+import { userLoggedIn } from './store/actions';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -17,6 +18,11 @@ const store = createStore(
 	rootReducer,
 	composeEnhancers(applyMiddleware(thunk))
 )
+
+if (localStorage.bookwormJWT) {
+	const user = { token: localStorage.bookwormJWT };
+	store.dispatch(userLoggedIn(user));
+}
 
 ReactDOM.render(
 	<Provider store={store}>
