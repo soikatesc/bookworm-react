@@ -8,3 +8,8 @@ export {
 	validateToken,
 	resetPassword
 } from './auth';
+
+export {
+	fetchBooks,
+	createBook
+} from './books';

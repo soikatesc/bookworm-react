@@ -98,12 +98,13 @@ class BookForm extends Component {
 								</Form.Field>
 								<Form.Field error={!!errors.pages}>
 									<label htmlFor="pages">Book pages</label>
-									<input 
-										type="number" 
+									<input
+										disabled={data.pages === undefined}
+										type="text" 
 										id="pages" 
 										name="pages"
 										placeholder="Author name"
-										value={data.pages}
+										value={data.pages ? data.pages: 'Loading...'}
 										onChange={this.onChangeNumber}/>
 										{errors.pages && <InlineError text={errors.pages} />}
 								</Form.Field>
@@ -120,7 +121,7 @@ class BookForm extends Component {
 							</Grid.Column>
 						</Grid.Row>
 						<Grid.Row>
-							<Button primary>Login</Button>
+							<Button primary>Save</Button>
 						</Grid.Row>
 					</Grid>
 				</Form>
@@ -136,7 +137,7 @@ BookForm.propTypes = {
 		title: PropTypes.string.isRequired,
 		authors: PropTypes.string.isRequired,
 		covers: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-		pages: PropTypes.number.isRequired,
+		pages: PropTypes.number,
 	}).isRequired
 };
 

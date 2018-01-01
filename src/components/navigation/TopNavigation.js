@@ -6,10 +6,15 @@ import gravatarurl from 'gravatar-url';
 import PropTypes from 'prop-types';
 
 import { logout } from '../../store/actions';
+import { allBooksSelector } from "../../store/reducers/books";
 
-const TopNavigation = ({ user, logout }) => (
+const TopNavigation = ({ user, logout, hasBooks }) => (
 	<Menu secondary pointing>
 		<Menu.Item as={Link} to="/dashboard">Dashboard</Menu.Item>
+
+		{ hasBooks && <Menu.Item as={Link} to="/books/new">
+			Add New Book
+		</Menu.Item>}
 
 		<Menu.Menu position="right">
 			<Dropdown trigger={<Image avatar src={gravatarurl(user.email)}/>}>
@@ -25,12 +30,14 @@ TopNavigation.propTypes = {
 	user: PropTypes.shape({
 		email: PropTypes.string.isRequired
 	}).isRequired,
-	logout: PropTypes.func.isRequired
+	logout: PropTypes.func.isRequired,
+	hasBooks: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => {
 	return {
-		user: state.user
+		user: state.user,
+		hasBooks: allBooksSelector(state).length > 0
 	}
 }
 
