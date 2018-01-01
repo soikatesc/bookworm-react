@@ -1,5 +1,10 @@
 export {
 	login,
 	userLoggedIn,
-	logout
+	logout,
+	signup,
+	confirm,
+	resetPasswordRequest,
+	validateToken,
+	resetPassword
 } from './auth';
